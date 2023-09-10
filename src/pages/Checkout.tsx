@@ -1,114 +1,79 @@
-import { Bairro, CEPInput, CEPLabel, CheckoutContent, City, CoffeeSelectionCart, Complements, CountButtons, Counter, FormCheckout, FormularioEndereco, Info, Informations, ItemComplement, ItemsCoffees, LinhaHorizontal, NumberInput, Price, RUAInput, SelectionCoffees, Uf } from "./styles";
-import {  Minus, Plus } from "@phosphor-icons/react";
+import { useContext } from "react";
+import { CheckoutContent, CoffeeSelectionCart, ComplementsOrder, ContentHeaderAddress, CountButtons, Counter, FormularioEndereco, ItemComplement, ItemsCoffees, LinhaHorizontal,  Price, SelectionCoffees, TitleAndInformation, TitleCompletOrder, } from "./styles";
+import {  Bank, CreditCard, CurrencyDollar, MapPin, MapPinLine, Minus, Money, Plus } from "@phosphor-icons/react";
+import { CartContext } from "../contexts/ProviderCart";
+import { FormAddress } from "../components/FormAddress";
 
 
 export function Checkout(){
+  const { items} = useContext(CartContext)
   return(
     <CheckoutContent>
       <FormularioEndereco>
-      <h2>Complete seu pedido</h2>
+        <TitleCompletOrder>Complete seu pedido</TitleCompletOrder>
+        <ComplementsOrder>
+          <ContentHeaderAddress>
+            <MapPinLine size={22}  />
+            <TitleAndInformation>
+              <h3>Endereço de Entrega</h3>
+              <p>Informe o endereço onde deseja receber seu pedido</p>
+            </TitleAndInformation>
+          </ContentHeaderAddress>
+          <FormAddress />
+        </ComplementsOrder>
       <div>
-        <span>Endereço de Entrega</span>
-        <p>Informe o endereço onde deseja receber seu pedido</p>
-
-        <FormCheckout action="">
-          <CEPInput >
-            <input type="text" name="" id="" placeholder="CEP"/>
-            
-          </CEPInput>
-          <RUAInput>
-            <input type="text" name="cep" id="cep" placeholder="Rua" />
-            
-          </RUAInput>
-          <Informations>
-            <NumberInput>
-              <input type="text" name="cep" id="cep"  placeholder="Número"/>
-            </NumberInput>
-            <Complements>
-              <input type="text" name="cep" id="cep"  placeholder="Complemento"/>
-              <span>Opicional</span>
-            </Complements>
-            
-          </Informations>
-          <Info>
-            <Bairro>
-              <input type="text" name="cep" id="cep"  placeholder="Bairro"/>
-            </Bairro>
-            <City>
-              <input type="text" name="cep" id="cep" placeholder="Cidade"/>
-            </City>
-            <Uf>
-              <input type="text" name="cep" id="cep" placeholder="UF"/>
-            </Uf>
-          </Info>
-
-        </FormCheckout>
-      </div>
+         <div>
+          <CurrencyDollar size={22}/>
+            <div>
+              <h3>Pagamento</h3>
+              <p>O pagamento é feito na entrega. Escolha a forma que deseja pagar</p>
+            </div>
+         </div>
+         <div>
+          <button>
+            <CreditCard size={22} />
+            CARTÃO DE CRÉDITO
+          </button>
+          <button>
+            <Bank size={22} />
+            CARTÃO DE DÉBITO
+          </button>
+          <button>
+            <Money size={22} />
+            DINHEIRO
+          </button>
+         </div>
+        </div>
       </FormularioEndereco>
       <CoffeeSelectionCart>
         <h3>Cafés selecionados</h3>
         <SelectionCoffees>
-          <ItemComplement>
-            <ItemsCoffees>
-              <img src="http://localhost:5173/expressotradicional.svg" alt="" />
-              <div>
-                <h2>Expresso Tradicional</h2>
-                <Counter>
-                  <CountButtons>
-                    <Minus />
+          {items.map(resp => {
+            return(
+              <>
+              <ItemComplement key={resp.id}>
+              <ItemsCoffees>
+                <img src={resp.url} alt="" />
+                <div>
+                  <h2>{resp.title}</h2>
+                  <Counter>
+                    <CountButtons>
+                      <Minus />
+                    </CountButtons>
+                    <span>{resp.count}</span>
+                    <CountButtons>
+                      <Plus />
                   </CountButtons>
-                  <span>{1}</span>
-                  <CountButtons>
-                    <Plus />
-                </CountButtons>
-              </Counter>
-              </div>
-              
-            </ItemsCoffees>
-            <Price>R$ 9.44</Price>
-          </ItemComplement>
-          <LinhaHorizontal />
-          <ItemComplement>
-            <ItemsCoffees>
-              <img src="http://localhost:5173/expressotradicional.svg" alt="" />
-              <div>
-                <h2>Expresso Tradicional</h2>
-                <Counter>
-                  <CountButtons>
-                    <Minus />
-                  </CountButtons>
-                  <span>{1}</span>
-                  <CountButtons>
-                    <Plus />
-                </CountButtons>
-              </Counter>
-              </div>
-              
-            </ItemsCoffees>
-            <Price>R$ 9.44</Price>
-          </ItemComplement>
-          <LinhaHorizontal />
-          <ItemComplement>
-            <ItemsCoffees>
-              <img src="http://localhost:5173/expressotradicional.svg" alt="" />
-              <div>
-                <h2>Expresso Tradicional</h2>
-                <Counter>
-                  <CountButtons>
-                    <Minus />
-                  </CountButtons>
-                  <span>{1}</span>
-                  <CountButtons>
-                    <Plus />
-                </CountButtons>
-              </Counter>
-              </div>
-              
-            </ItemsCoffees>
-            <Price>R$ 9.44</Price>
-          </ItemComplement>
-          <LinhaHorizontal />
-          
+                </Counter>
+                </div>
+                
+              </ItemsCoffees>
+              <Price>R$ {resp.price.toLocaleString('pt-br', {minimumFractionDigits: 2})}</Price>
+            </ItemComplement>
+            <LinhaHorizontal />
+              </>
+            )
+          })}          
           <div>
             <div>
               <span>Total de itens</span>

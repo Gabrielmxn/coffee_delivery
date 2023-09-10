@@ -1,74 +1,5 @@
 import { styled } from 'styled-components';
 
-const BaseInput = styled.label`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;  
-  padding: 0.75rem;
-  background-color: ${props => props.theme['base-input']};
-  border-radius: 4px;
-  
-  &:has(> input:focus){
-      outline: 1px solid ${props => props.theme['yellow-dark']};
-    
-    
-  }
-
-  span{
-    font-style: italic;
-    font-size: 0.75rem;
-    color: ${props => props.theme['base-label']}
-  }
-
-  input {
-    width: 100%;
-    background-color: transparent;
-    outline: none;
-    border: none;
-
-    &::placeholder{
-      font-size: 0.875rem;
-      color: ${props => props.theme['base-label']}
-    }
-   
-    
-  }
-`
-export const Info = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-`
-
-export const Bairro = styled(BaseInput)`
-  max-width: 200px;
-`
-export const City = styled(BaseInput)``
-export const Uf = styled(BaseInput)`
-  max-width: 60px;
-`
-export const RUAInput = styled(BaseInput)`
-  width: 100%;
-`
-
-export const CEPInput = styled(BaseInput)`
-  max-width: 200px;
-`
-
-export const NumberInput = styled(BaseInput)`
-  max-width: 200px;
-`
-export const Complements = styled(BaseInput)`
-  width: 100%;
-`
-export const Informations = styled.div`
-  display: flex;
-
-  align-items: center;
-  gap: 1rem;
-`
- 
 
 
 export const CheckoutContent = styled.div`
@@ -77,14 +8,10 @@ export const CheckoutContent = styled.div`
   display: flex;
 
   gap: 2rem;
+  margin-top: 2.5rem;
 `
 
-export const FormCheckout = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
 
-`
 
 export const Counter = styled.div`
   display: flex;
@@ -169,4 +96,50 @@ export const LinhaHorizontal = styled.div`
 `
 export const FormularioEndereco = styled.div`
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap:0.75rem;
+`
+
+
+export const ComplementsOrder = styled.div`
+    padding: 2.5rem;
+    border-radius: 6px;
+    background-color: ${props => props.theme['base-card']};
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2rem;
+`
+
+export const ContentHeaderAddress = styled.div`
+  display: flex;
+  gap: 0.5rem;
+
+  svg {
+    color: ${props => props.theme['yellow-dark']};
+  }
+
+  
+`
+
+export const TitleAndInformation = styled.div`
+  h3 {
+      color: ${props => props.theme['base-subtitle']};
+      font-size: 1rem;
+      font-weight: 400;
+    }
+
+    p {
+      color: ${props => props.theme['base-text']};
+      font-size: 0.875rem;
+    }
+`
+
+
+export const TitleCompletOrder = styled.h2`
+    font-size: 1.125rem;
+    color: ${props => props.theme['base-subtitle']};
+    font-family: 'Baloo 2', sans-serif;
+    margin-bottom: 0.9rem;
 `
