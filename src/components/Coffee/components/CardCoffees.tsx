@@ -2,6 +2,7 @@ import { ShoppingCart, Minus, Plus } from "@phosphor-icons/react";
 import { Actions, Card, CardFooter, CartButtons, CountButtons, Counter, Ingredients, Price } from "./styles";
 import { useContext, useState } from "react";
 import { CartContext } from "../../../contexts/ProviderCart";
+import { NotificationAddCoffeeStore } from "../../NotificationAddCoffeeStore";
 
 interface CardCoffeeProps {
   id: string
@@ -21,6 +22,7 @@ export function CardCoffee({
   price
 }: CardCoffeeProps){
   const [count, setCount] = useState(1)
+  const [notificationActive, setNotificationActive] = useState(false)
   const { handleAddItems } = useContext(CartContext)
 
   function handleSetCountCart(add: string){
@@ -41,8 +43,13 @@ export function CardCoffee({
       count,
       price
     }
-    console.log("ok")
+
+    localStorage.setItem('coffee_delivery_item', JSON.stringify(item))
     handleAddItems(item)
+    setNotificationActive(true)
+    setTimeout(() => {
+      setNotificationActive(false)
+    }, 2000)
   }
   return(
     <Card>
@@ -50,7 +57,7 @@ export function CardCoffee({
         <Ingredients>
           {ingredientes.map(response => {
             return(
-              <span>{response.toLocaleUpperCase()}</span>
+              <span key={response}>{response.toLocaleUpperCase()}</span>
             )
           })}
         </Ingredients>
@@ -76,6 +83,7 @@ export function CardCoffee({
             </CartButtons>
           </Actions>
           </CardFooter>
+          {notificationActive && <NotificationAddCoffeeStore />}
     </Card>
   )
 }

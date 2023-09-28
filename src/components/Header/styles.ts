@@ -22,7 +22,7 @@ export const ButtonCart = styled.button`
   border-radius: 6px;
   cursor: pointer;
 
-  a{
+  svg{
     text-decoration: none;
     color: ${props => props.theme['yellow-dark']};
   }

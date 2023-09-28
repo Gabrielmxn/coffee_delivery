@@ -18,14 +18,14 @@ export function Header(){
           <MapPin size={22} weight="fill"/>
           Porto Alegre, RS
           </Localitation>
-        <ButtonCart>
           <NavLink to="/checkout">
+        <ButtonCart disabled={items.length <= 0}>
             <ShoppingCart size={22} weight="fill"/>
             {items.length > 0 && <Notification>
               {items.length}
             </Notification> }
-          </NavLink>
         </ButtonCart>
+        </NavLink>
       </NavMenu>
     </HeaderContent>
   )

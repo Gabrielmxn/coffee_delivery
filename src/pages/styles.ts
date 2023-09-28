@@ -1,4 +1,4 @@
-import { styled } from 'styled-components';
+import { styled,  } from 'styled-components';
 
 
 
@@ -13,13 +13,15 @@ export const CheckoutContent = styled.div`
 
 
 
+
+
 export const Counter = styled.div`
   display: flex;
 
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
-  background-color: #E6E5E5;
+  background-color: ${props => props.theme['base-button']};
   border-radius: 6px;
   padding: 0.5rem;
   width: 100%;
@@ -86,6 +88,45 @@ export const ItemComplement = styled.div`
   
 `
 
+export const ContainerPagamento = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  
+
+`
+export const HeaderFooterPagamento = styled.div`
+  h3 {
+    font-size: 1rem;
+    color: ${props => props.theme['base-subtitle']};
+  }
+
+  p {
+    margin-top: 2px;
+    font-size: 0.875rem;
+    color: ${props => props.theme['base-text']};
+  }
+`
+export const ContainerFooter = styled.div`
+  padding: 2.5rem;
+  border-radius: 6px;
+  background-color: ${props => props.theme['base-card']};
+
+  svg{
+    fill: ${props => props.theme['purple']};
+  }
+`
+
+export const ContainerTypePagament = styled.div`
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin-top: 2rem;
+
+  span{
+    font-size: 0.75rem;
+    }
+`
+
 export const LinhaHorizontal = styled.div`
 
     content: '';
@@ -98,9 +139,14 @@ export const FormularioEndereco = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap:0.75rem;
 `
 
+export const FormularioCompletarPedido = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap:0.75rem;
+`
 
 export const ComplementsOrder = styled.div`
     padding: 2.5rem;
@@ -142,4 +188,101 @@ export const TitleCompletOrder = styled.h2`
     color: ${props => props.theme['base-subtitle']};
     font-family: 'Baloo 2', sans-serif;
     margin-bottom: 0.9rem;
+`
+
+
+export const DetalhesItens = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+`
+
+export const Item = styled.div`
+    display: flex;
+    justify-content: space-between;
+    font-size: 1rem;
+    color: ${props => props.theme['base-text']};
+
+    &:last-child{
+      span{
+        font-weight: bold;
+        color: ${props => props.theme['base-subtitle']};
+        font-size: 1.25rem;
+      }
+    }
+    
+`
+
+
+export const ButtonConfirmarPedido = styled.button`
+  color: ${props => props.theme['white']};
+  background-color: ${props => props.theme['yellow']};
+  font-size: 0.875rem;
+  border: none;
+  padding: 0.75rem 0;
+  cursor: pointer;
+  border-radius: 6px;
+`
+
+export const ContainerChange = styled.div`
+    display: flex;
+    gap: 0.5rem;
+`
+export const Remover = styled.button`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+    gap: 0.5rem;
+
+    background-color: ${props => props.theme['base-button']};
+    padding: 0 0.5rem;
+    color: ${props => props.theme['purple']};
+
+    span{
+      color: ${props => props.theme['base-text']};
+    }
+`
+
+
+export const ContainerSuccess = styled.div`
+
+    border: 1px solid red;
+   
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+`
+
+
+export const ContainerMainSuccess = styled.div`
+  max-width: 1120px;
+  margin: 0 auto;  
+`
+
+
+
+export const TypePagament = styled.button`
+    flex: 1;
+    cursor: pointer;
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    overflow: hidden;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    background-color: ${props => props.theme['base-button']};
+    
+    &.active{
+      background-color: ${props => props.theme['purple-light']};
+      border: 2px solid ${props => props.theme['purple']};
+     
+    }
 `

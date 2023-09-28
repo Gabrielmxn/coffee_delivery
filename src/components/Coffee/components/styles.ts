@@ -111,5 +111,10 @@ export const CartButtons = styled.button`
     svg {
       fill: white;
     }
+
+    &:hover{
+      opacity: 0.;
+    }
   
 `
+
