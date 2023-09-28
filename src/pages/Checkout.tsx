@@ -12,13 +12,21 @@ export function Checkout(){
   
   const { items, handleAdicionarOuSubtrair, handleRemoveItem} = useContext(CartContext)
   const [buttonClick, setButtonClick] = useState('')
-  
+  const [removeItems, setRemoveItems] = useState('')
   useEffect(() => {
 
   }, [items])
 
   function handleButtonActive(typePagement: string){
     setButtonClick(typePagement)
+  }
+
+  function handleRemoveItemAnimation(id: string){
+    setRemoveItems(id)
+    console.log(id)
+    setTimeout(() => {
+      handleRemoveItem(id)
+    }, 999)
   }
 
   const totalItems = items.reduce((acc, item) => acc + (item.price * item.count), 0)
@@ -80,7 +88,7 @@ export function Checkout(){
             {items.map(resp => {
               return(
                 <>
-                <ItemComplement key={resp.id}>
+                <ItemComplement key={resp.id} className={removeItems === resp.id ? 'rm' : ''}>
                 <ItemsCoffees>
                   <img src={resp.url} alt="" />
                   <div>
@@ -95,7 +103,7 @@ export function Checkout(){
                           <Plus />
                         </CountButtons>
                       </Counter>
-                      <Remover onClick={() => handleRemoveItem(resp.id)}>
+                      <Remover onClick={() => handleRemoveItemAnimation(resp.id)}>
                         <Trash size={16} />
                         <span>Remover</span> 
                       </Remover>

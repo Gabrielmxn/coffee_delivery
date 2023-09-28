@@ -83,8 +83,25 @@ export const ItemComplement = styled.div`
   display: flex;
   justify-content: space-between;
  
- 
+  transform: scale(1);
 
+  &.rm{
+
+  
+    @keyframes test {
+    0% {
+      transform: translateX(0px);
+    }
+    50% {
+      transform: translateX(100px);
+    }
+    100% {
+      transform: translateX(10000px);
+    }
+    }
+
+    animation: test 1s ease-in ;
+  }
   
 `
 
