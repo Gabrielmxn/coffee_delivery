@@ -64,4 +64,10 @@ export const Localitation = styled.div`
    svg {
     fill: #4B2995;
    }
+   @media screen and (max-width: 450px){
+    & span:nth-child(2){
+      display: none;
+    }
+   }
+ 
 `

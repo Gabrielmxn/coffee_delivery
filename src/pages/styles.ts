@@ -6,9 +6,10 @@ export const CheckoutContent = styled.div`
   max-width: 1120px;
   margin: 0 auto;
   display: flex;
-
+  flex-wrap: wrap;
   gap: 2rem;
   margin-top: 2.5rem;
+  padding: 10px;
 `
 
 
@@ -58,10 +59,14 @@ export const ItemsCoffees = styled.div`
 `
 export const SelectionCoffees = styled.div`
   display: flex;
+
   flex-direction: column;
+
+  align-items: normal;
   gap: 1.5rem;
   padding: 2.5rem;
- 
+  width: 100%;
+
   border-radius: 6px 44px 6px 44px;
   background-color: ${props => props.theme['base-card']};
 
@@ -70,6 +75,10 @@ export const SelectionCoffees = styled.div`
 export const CoffeeSelectionCart = styled.div`
   width: 100%;
   max-width: 448px;
+
+@media screen and (max-width: 950px){
+  max-width: none;
+}
 `
 
 export const Price = styled.span`
@@ -142,6 +151,12 @@ export const ContainerTypePagament = styled.div`
   span{
     font-size: 0.75rem;
     }
+
+    @media screen and (max-width: 800px){
+      flex-direction: column;
+      align-items: normal;
+    }
+ 
 `
 
 export const LinhaHorizontal = styled.div`

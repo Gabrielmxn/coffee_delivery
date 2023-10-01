@@ -12,6 +12,13 @@ export const Content = styled.div`
   margin: 92px auto;
   justify-content: space-between;
   align-items: center;  
+  padding: 6px;
+  img {
+   
+    @media screen and (max-width: 800px){
+      display: none;
+    }
+  }
 `
 
 export const ContentText = styled.div`
