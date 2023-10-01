@@ -279,17 +279,7 @@ export const Remover = styled.button`
 `
 
 
-export const ContainerSuccess = styled.div`
 
-    border: 1px solid red;
-   
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-
-`
 
 
 export const ContainerMainSuccess = styled.div`
@@ -316,5 +306,88 @@ export const TypePagament = styled.button`
       background-color: ${props => props.theme['purple-light']};
       border: 2px solid ${props => props.theme['purple']};
      
+    }
+`
+
+
+
+
+/* SUCCESS */
+
+export const Title = styled.h2`
+    font-size: 2rem;
+    color: ${props => props.theme['yellow-dark']}
+
+`
+
+export const Subtitle = styled.p`
+    font-size: 1.25rem;
+    color: ${props => props.theme['base-subtitle']};
+    margin-top: 0.25rem;
+`
+
+
+export const ContainerSuccess = styled.div`
+
+
+    margin-top: 40px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+
+`
+
+export const DetalheEntrega = styled.div`
+    
+    flex: 1;
+    padding: 1px;
+
+  
+   
+    border-radius: 6px 36px;
+    background-image: linear-gradient(to right, #DBAC2C,  #8047F8);
+   
+    section{ 
+      width: 100%;
+    
+      border-radius: inherit;
+      height: 100%;
+      background-color: #fff;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px
+    }
+`
+
+export const ItemDetalheEntrega = styled.div`
+    display: flex;
+    gap: 0.75rem;
+
+`
+
+export const Info = styled.div`
+    display: flex;
+    flex-direction: column;
+    color: ${props => props.theme['base-text']};
+    font-size: 1rem;
+`
+interface PropsDivIcon {
+  bg: string
+}
+
+export const Icon = styled.div<PropsDivIcon>`
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 99999999999px;
+    background-color: ${props => props.theme[props.bg]};
+
+    svg{
+      color: ${props => props.theme['white']};
     }
 `
