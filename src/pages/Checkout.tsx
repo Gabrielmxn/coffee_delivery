@@ -5,6 +5,7 @@ import { CartContext } from "../contexts/ProviderCart";
 import { FormAddress } from "../components/FormAddress";
 import { formatBRL } from "../utils/formatBRL";
 import { TitleComponent } from "../components/TitleComponent";
+import { Link } from "react-router-dom";
 
 
 const frete = 3.5;
@@ -131,9 +132,13 @@ export function Checkout(){
                 <span>{formatBRL.format(totalItems + frete)}</span>
               </Item>
             </DetalhesItens>
+           
             <ButtonConfirmarPedido>
-              CONFIRMAR PEDIDO
+              <Link to="/success">
+                CONFIRMAR PEDIDO
+              </Link>
             </ButtonConfirmarPedido>
+           
           </SelectionCoffees>
         </CoffeeSelectionCart>
       </CheckoutContent>

@@ -254,6 +254,13 @@ export const ButtonConfirmarPedido = styled.button`
   padding: 0.75rem 0;
   cursor: pointer;
   border-radius: 6px;
+
+  a {
+    display: block;
+    text-decoration: none;
+    color: ${props => props.theme['white']};
+    width: 100%;
+  }
 `
 
 export const ContainerChange = styled.div`
@@ -284,7 +291,11 @@ export const Remover = styled.button`
 
 export const ContainerMainSuccess = styled.div`
   max-width: 1120px;
-  margin: 0 auto;  
+  margin: 0 auto;
+  padding: 6px;
+  img {
+    object-fit: cover;
+  }
 `
 
 
@@ -333,10 +344,30 @@ export const ContainerSuccess = styled.div`
     margin-top: 40px;
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
 
+    @media screen and (max-width: 900px){
+      display: grid;
+      gap: 0;
+      justify-items: center;
+      justify-content: center;
+      
+      img {
+       
+        grid-row: 1 / span 1;
+        width: 200px;
+        object-fit: cover;
+        border-bottom: 0px;
+        
+      }
+
+    }
+
+
+    
 `
 
 export const DetalheEntrega = styled.div`
@@ -359,6 +390,12 @@ export const DetalheEntrega = styled.div`
       display: flex;
       flex-direction: column;
       gap: 32px
+    }
+
+    @media screen and (max-width: 900px){
+      &{
+        grid-row: 2 / span 2;
+      }
     }
 `
 
