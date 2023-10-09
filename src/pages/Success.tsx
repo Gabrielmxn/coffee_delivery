@@ -2,9 +2,13 @@ import { CurrencyDollar, MapPin, Timer } from '@phosphor-icons/react'
 import imageIlustre from '../assets/Illustration.svg'
 import { TitleComponent } from '../components/TitleComponent'
 import { ContainerMainSuccess, ContainerSuccess, Subtitle, Title, Icon, DetalheEntrega, Info, ItemDetalheEntrega } from './styles'
+import { useContext } from 'react'
+import { PedidoContext } from '../contexts/Pedido'
 
 
 export function Success(){
+  const { address, pagamento } = useContext(PedidoContext)
+  console.log(address)
   return(
     <>
       <TitleComponent title="Success" />
@@ -20,9 +24,9 @@ export function Success(){
               </Icon>
               <Info>
                 <p>
-                  Entrega em <strong>Rua João Daniel Martinelli, 102</strong>
+                  Entrega em <strong>{`${address.localidade}, 102`}</strong>
                 </p>
-                <p>Farrapos - Porto Alegre, RS</p>
+                <p>{`${address.bairro} - ${address.localidade}, ${address.uf}`}</p>
               </Info>
             </ItemDetalheEntrega>
             <ItemDetalheEntrega>
@@ -44,7 +48,7 @@ export function Success(){
               <p>
                 Pagamento na entrega
               </p>
-              <strong>Cartão de Crédito</strong>
+              <strong>{pagamento}</strong>
              </Info>
             </ItemDetalheEntrega>
             </section>

@@ -5,21 +5,32 @@ import { CartContext } from "../contexts/ProviderCart";
 import { FormAddress } from "../components/FormAddress";
 import { formatBRL } from "../utils/formatBRL";
 import { TitleComponent } from "../components/TitleComponent";
-import { Link } from "react-router-dom";
+import { Link, useNavigate , unstable_HistoryRouter, useRoutes    } from "react-router-dom";
+
+import { PedidoContext } from "../contexts/Pedido";
+import { Success } from "./Success";
+
+history
 
 
 const frete = 3.5;
 export function Checkout(){
-  
+  const navigate = useNavigate();
+  const {pagamento, hadnlePagamento, address } = useContext(PedidoContext)
   const { items, handleAdicionarOuSubtrair, handleRemoveItem} = useContext(CartContext)
-  const [buttonClick, setButtonClick] = useState('')
   const [removeItems, setRemoveItems] = useState('')
+  const element = useRoutes([
+    {
+      path: "/success",
+      element: <Success />,
+    }])
+
   useEffect(() => {
 
   }, [items])
 
   function handleButtonActive(typePagement: string){
-    setButtonClick(typePagement)
+    hadnlePagamento(typePagement)
   }
 
   function handleRemoveItemAnimation(id: string){
@@ -28,6 +39,17 @@ export function Checkout(){
     setTimeout(() => {
       handleRemoveItem(id)
     }, 999)
+  }
+
+  function handleCheckoutPedido(){
+    console.log(pagamento)
+    console.log(address.cep)
+    console.log(address.cep !== '' && pagamento !== '');
+    if(pagamento !== '' && address.cep !== ''){
+      navigate('/success');
+     
+    }
+   
   }
 
   const totalItems = items.reduce((acc, item) => acc + (item.price * item.count), 0)
@@ -58,21 +80,21 @@ export function Checkout(){
           </ContainerPagamento>
           <ContainerTypePagament >
             <TypePagament 
-              className={buttonClick === 'Cartão de crédito' ?  'active' : '' }
+              className={pagamento === 'Cartão de crédito' ?  'active' : '' }
               onClick={() => handleButtonActive('Cartão de crédito')}
             >
               <CreditCard size={16} />
               <span>CARTÃO DE CRÉDITO</span>
             </TypePagament>
             <TypePagament 
-              className={buttonClick === 'Cartão de débito' ?  'active' : '' }
+              className={pagamento === 'Cartão de débito' ?  'active' : '' }
               onClick={() => handleButtonActive('Cartão de débito')}
             >
               <Bank size={16} />
               <span>CARTÃO DE DÉBITO</span>
             </TypePagament>
             <TypePagament 
-              className={buttonClick === 'Dinheiro' ?  'active' : '' }
+              className={pagamento === 'Dinheiro' ?  'active' : '' }
               onClick={() => handleButtonActive('Dinheiro')}
             >
               <Money size={16} />
@@ -134,9 +156,9 @@ export function Checkout(){
             </DetalhesItens>
            
             <ButtonConfirmarPedido>
-              <Link to="/success">
+              <button onClick={handleCheckoutPedido}>
                 CONFIRMAR PEDIDO
-              </Link>
+              </button>
             </ButtonConfirmarPedido>
            
           </SelectionCoffees>
