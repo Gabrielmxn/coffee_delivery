@@ -24,7 +24,7 @@ export function Success(){
               </Icon>
               <Info>
                 <p>
-                  Entrega em <strong>{`${address.localidade}, 102`}</strong>
+                  Entrega em <strong>{`${address.localidade}, ${address.numero}`}</strong>
                 </p>
                 <p>{`${address.bairro} - ${address.localidade}, ${address.uf}`}</p>
               </Info>

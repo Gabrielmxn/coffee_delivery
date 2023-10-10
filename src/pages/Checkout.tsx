@@ -5,17 +5,17 @@ import { CartContext } from "../contexts/ProviderCart";
 import { FormAddress } from "../components/FormAddress";
 import { formatBRL } from "../utils/formatBRL";
 import { TitleComponent } from "../components/TitleComponent";
-import { Link, useNavigate , unstable_HistoryRouter, useRoutes    } from "react-router-dom";
+import {  useNavigate , useRoutes   } from "react-router-dom";
 
 import { PedidoContext } from "../contexts/Pedido";
 import { Success } from "./Success";
 
-history
+
 
 
 const frete = 3.5;
 export function Checkout(){
-  const navigate = useNavigate();
+  
   const {pagamento, hadnlePagamento, address } = useContext(PedidoContext)
   const { items, handleAdicionarOuSubtrair, handleRemoveItem} = useContext(CartContext)
   const [removeItems, setRemoveItems] = useState('')
@@ -41,16 +41,7 @@ export function Checkout(){
     }, 999)
   }
 
-  function handleCheckoutPedido(){
-    console.log(pagamento)
-    console.log(address.cep)
-    console.log(address.cep !== '' && pagamento !== '');
-    if(pagamento !== '' && address.cep !== ''){
-      navigate('/success');
-     
-    }
-   
-  }
+
 
   const totalItems = items.reduce((acc, item) => acc + (item.price * item.count), 0)
   return(
@@ -155,10 +146,8 @@ export function Checkout(){
               </Item>
             </DetalhesItens>
            
-            <ButtonConfirmarPedido>
-              <button onClick={handleCheckoutPedido}>
+            <ButtonConfirmarPedido form="form-checkout" type="submit">
                 CONFIRMAR PEDIDO
-              </button>
             </ButtonConfirmarPedido>
            
           </SelectionCoffees>
