@@ -2,16 +2,15 @@ import axios from "axios";
 import { useContext, useEffect} from 'react';
 import { Bairro, CEPInput, City, Complements, FormCheckout, Info, Informations, NumberInput, RUAInput, Uf } from "./styles";
 import { PedidoContext } from "../../contexts/Pedido";
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 export function FormAddress(){
   const {  heandleAddress, pagamento } = useContext(PedidoContext)
-  const { register, getValues, setValue, handleSubmit, watch, formState: { errors } } = useForm();
+  const { register, setValue, handleSubmit, watch} = useForm();
   const navigate = useNavigate();
 
-  const onSubmit = dataT => {
-    console.log(dataT);
+  const onSubmit = (dataT: FieldValues) => {
 
     if(pagamento !== ''){
       heandleAddress(dataT.checkout)
@@ -19,7 +18,7 @@ export function FormAddress(){
     }
   }
   useEffect(() => {
-    const subscription = watch((value, { name, type }) => {
+    const subscription = watch((value, { name }) => {
 
       if(name === 'checkout.cep'){
         getAddress(value.checkout.cep);
@@ -33,20 +32,14 @@ export function FormAddress(){
     if(value.length !== 8){
       return
     }
-    const { data } = await axios.get(`https://viacep.com.br/ws/${event.target.value}/json/`)
-    console.log(data)
+    const { data } = await axios.get(`https://viacep.com.br/ws/${value}/json/`)
+
     const importAddress = {
       bairro: data.bairro,
       localidade: data.localidade,
       logradouro: data.logradouro,
       uf: data.uf
     }
-
-    console.log(getValues("cep"))
-    console.log('wdad');
-    // setLogradouro(data.logradouro)
-    // setBairro(data.bairro)
-    // setLocalidade(data.localidade)
     setValue("checkout", importAddress)
 
   }

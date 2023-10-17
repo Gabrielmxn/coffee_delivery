@@ -1,14 +1,14 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { ButtonConfirmarPedido, CheckoutContent, CoffeeSelectionCart, ComplementsOrder, ContainerChange, ContainerFooter, ContainerPagamento, ContainerTypePagament, ContentHeaderAddress, CountButtons, Counter, DetalhesItens, FormularioCompletarPedido, FormularioEndereco, HeaderFooterPagamento, Item, ItemComplement, ItemsCoffees, LinhaHorizontal,  Price, Remover, SelectionCoffees, TitleAndInformation, TitleCompletOrder, TypePagament, } from "./styles";
 import {  Bank, CreditCard, CurrencyDollar, MapPinLine, Minus, Money, Plus, Trash } from "@phosphor-icons/react";
 import { CartContext } from "../contexts/ProviderCart";
 import { FormAddress } from "../components/FormAddress";
 import { formatBRL } from "../utils/formatBRL";
 import { TitleComponent } from "../components/TitleComponent";
-import {  useNavigate , useRoutes   } from "react-router-dom";
+
 
 import { PedidoContext } from "../contexts/Pedido";
-import { Success } from "./Success";
+
 
 
 
@@ -16,18 +16,10 @@ import { Success } from "./Success";
 const frete = 3.5;
 export function Checkout(){
   
-  const {pagamento, hadnlePagamento, address } = useContext(PedidoContext)
+  const {pagamento, hadnlePagamento } = useContext(PedidoContext)
   const { items, handleAdicionarOuSubtrair, handleRemoveItem} = useContext(CartContext)
   const [removeItems, setRemoveItems] = useState('')
-  const element = useRoutes([
-    {
-      path: "/success",
-      element: <Success />,
-    }])
 
-  useEffect(() => {
-
-  }, [items])
 
   function handleButtonActive(typePagement: string){
     hadnlePagamento(typePagement)

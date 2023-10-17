@@ -11,6 +11,7 @@ interface AddressProps {
   localidade: string
   logradouro: string
   uf: string
+  numero: number
 }
 
 interface PedidoContextProps {
