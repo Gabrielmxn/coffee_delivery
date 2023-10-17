@@ -1,8 +1,8 @@
 import { styled } from 'styled-components';
 
 export const MainContent = styled.div`
-  background: url('/backgroundHeader.svg');
-  background-repeat: no-repeat;
+  background: url('/backcoffee.png');
+  background-repeat: repeat;
   background-size: contain;
 
 `
