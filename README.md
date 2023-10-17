@@ -29,11 +29,11 @@ Este é um projeto de aplicação para gerenciar um carrinho de compras de uma c
 
 Certifique-se de ter o Node.js e o npm instalados. Execute o seguinte comando na raiz do projeto:
 
-npm install
+```npm install```
 
 Para iniciar o servidor de desenvolvimento, use o comando:
 
-npm start
+```npm run dev```
 
 
 Acesse a aplicação em [http://localhost:3000](http://localhost:3000).
